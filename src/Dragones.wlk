@@ -1,8 +1,9 @@
 class Dragon{
  	const property peso
  	const property danio = self.poder()
- 	const requisitosDeMontura = []
+ 	const requisitosDeMontura = self.requisitos()
  	
+ 	method requisitos()
  	method poder() = 0
  	method velocidad() = self.velocidadBase() - peso
  	method velocidadBase() = 60
@@ -10,13 +11,14 @@ class Dragon{
 }
  
 class FuriaNocturna inherits Dragon{
+	override method requisitos() = [{unVikingo => unVikingo.poseeUnSistemaDeVuelo()}]
  	override method velocidad() = super() * 3
 }
 
 class NadderMortifero inherits Dragon{
 	const inteligencia
+	override method requisitos() = [{unVikingo => unVikingo.unVikingo.inteligencia() < inteligencia}]
 	override method poder() = 150
-	override method puedeMontarme(unVikingo) = super(unVikingo) and inteligencia >= unVikingo.clase().inteligencia()
 }
 
 class Gronckle inherits Dragon{

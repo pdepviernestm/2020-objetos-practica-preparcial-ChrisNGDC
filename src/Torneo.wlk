@@ -25,16 +25,15 @@ object torneo {
 		participantes = participantes.sortedBy({unVikingo, otroVikingo => unVikingo.masAptoQuePara(otroVikingo, unaPosta)})
 		participantes.forEach({unVikingo => unRanking.add(unVikingo)})
 	}
+	method ocurrirUna(unaPosta, unRaking){
+		self.inscribirParticipantesA(unaPosta)
+		self.rankearEn(unaPosta, unRaking)
+		self.realizarPosta(unaPosta)
+	}
 	method jugarse(){
 		const carrera = new Carrera(distancia = new Range(start = 5, end = 20).anyOne())
-		self.inscribirParticipantesA(pesca)
-		self.rankearEn(pesca, rankingPesca)
-		self.realizarPosta(pesca)
-		self.inscribirParticipantesA(combate)
-		self.rankearEn(combate, rankingCombate)
-		self.realizarPosta(combate)
-		self.inscribirParticipantesA(carrera)
-		self.rankearEn(carrera, rankingCarrera)
-		self.realizarPosta(carrera)
+		self.ocurrirUna(pesca, rankingPesca)
+		self.ocurrirUna(combate, rankingCombate)
+		self.ocurrirUna(carrera, rankingCarrera)
 	}	
 }
