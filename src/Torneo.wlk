@@ -8,13 +8,19 @@ const Vikingos = [hipo, astrid, patan, patapez]
 
 object torneo {
 	var participantes = []
+	const dragonesDisponibles = []
 	const property rankingPesca = []
 	const property rankingCombate = []
 	const property rankingCarrera = []
 	
+	method agregarDragonesDisponibles(unosDragones) {
+		unosDragones.forEach({unDragon => dragonesDisponibles.add(unDragon)})
+	}
 	method inscribirParticipanteA(unVikingo, unaPosta) { 
-		if (unaPosta.puedeParticipar(unVikingo))
+		if (unaPosta.puedeParticipar(unVikingo)){
+			unVikingo.controlarClase(unaPosta, dragonesDisponibles)
 			participantes.add(unVikingo)
+		}
 	}
 	method inscribirParticipantesA(unaPosta) { Vikingos.forEach({unVikingo => self.inscribirParticipanteA(unVikingo, unaPosta)}) }
 	method realizarPosta(unaPosta) { 

@@ -15,8 +15,9 @@ class Vikingo{
 	method aumentarHambre(unaCantidad) {clase.aumentarHambre(unaCantidad)}
 	method reducirHambre(unaCantidad) {nivelDeHambre = 0.max(nivelDeHambre - unaCantidad)}
 	method estaHambriento() = nivelDeHambre >= 100
-	method participarEnPosta(unaPosta) {
+	method participarEnPostaCon(unaPosta, unosDragones) {
 		if (unaPosta.puedeParticipar(self))
+			clase = self.mejorClaseParaCon(unaPosta, unosDragones)
 			unaPosta.realizadoPor(self)
 	}
 	method poseeUnSistemaDeVuelo() = item == sistemaDeVuelo
@@ -27,9 +28,14 @@ class Vikingo{
 		if (unDragon.puedeMontarme(self)){
 			clase = new Jinete(dragon = unDragon)
 		}
-		else self.error("Conversion no posible")
+		else console.println("Conversion no posible")
 	}
 	method convertirANormal() { clase = normal }
+	method mejorClaseParaCon(unaPosta, unosDragones){
+		const posibles = unosDragones.forEach({unDragon => new Jinete(dragon = unDragon)}) + normal
+		return posibles.max({unPosible => unPosible.pescadoMaximoALevantar(self)})
+	}
+	method controlarClase(unaPosta) { clase =  self.mejorClaseParaCon(unaPosta, unosDragones)}
 }
 
 object normal {
