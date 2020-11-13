@@ -35,7 +35,7 @@ class Vikingo{
 		const posibles = unosDragones.forEach({unDragon => new Jinete(dragon = unDragon)}) + normal
 		return posibles.max({unPosible => unPosible.pescadoMaximoALevantar(self)})
 	}
-	method controlarClase(unaPosta) { clase =  self.mejorClaseParaCon(unaPosta, unosDragones)}
+	method controlarClase(unaPosta, unosDragones) { clase =  self.mejorClaseParaCon(unaPosta, unosDragones)}
 }
 
 object normal {
