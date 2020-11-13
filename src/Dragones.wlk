@@ -17,7 +17,7 @@ class FuriaNocturna inherits Dragon{
 
 class NadderMortifero inherits Dragon{
 	const inteligencia
-	override method requisitos() = [{unVikingo => unVikingo.unVikingo.inteligencia() < inteligencia}]
+	override method requisitos() = [{unVikingo => unVikingo.inteligencia() < inteligencia}]
 	override method poder() = 150
 }
 
