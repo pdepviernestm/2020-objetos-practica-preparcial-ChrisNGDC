@@ -6,7 +6,7 @@ class Dragon{
  	method poder() = 0
  	method velocidad() = self.velocidadBase() - peso
  	method velocidadBase() = 60
- 	method puedeMontarme(unVikingo) = unVikingo.clase().peso() <= peso * 0.2 and requisitosDeMontura.all({unRequisito => unRequisito.loCumple(unVikingo)})
+ 	method puedeMontarme(unVikingo) = unVikingo.peso() <= peso * 0.2 and requisitosDeMontura.all({unRequisito => unRequisito.loCumple(unVikingo)})
 }
  
 class FuriaNocturna inherits Dragon{
@@ -25,6 +25,6 @@ class Gronckle inherits Dragon{
 }
 
 class Requisito{
-	const requisito
+	const requisito = {}
 	method loCumple(unVikingo) = requisito.apply(unVikingo)
 }
