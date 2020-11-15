@@ -12,7 +12,6 @@ class Vikingo{
 	var nivelDeHambre
 	
 	method nivelDeHambre() = nivelDeHambre
-	method aumentarHambre(unaCantidad) {clase.aumentarHambre(unaCantidad)}
 	method reducirHambre(unaCantidad) {nivelDeHambre = 0.max(nivelDeHambre - unaCantidad)}
 	method estaHambriento() = nivelDeHambre >= 100
 	method participarEnPostaCon(unaPosta, unosDragones) {
@@ -20,6 +19,7 @@ class Vikingo{
 			clase = self.mejorClaseParaCon(unaPosta, unosDragones)
 			unaPosta.realizadoPor(self)
 	}
+	method aumentarHambre(unaCantidad) {nivelDeHambre += clase.aumentoDeHambre(self, unaCantidad)}
 	method poseeUnSistemaDeVuelo() = item == sistemaDeVuelo
 	method masBarbaroQue(unaCantidad) = barbarosidad > unaCantidad
 	method masAptoQuePara(unVikingo, unaPosta) = unaPosta.compatibilidad(self) > unaPosta.compatibilidad(unVikingo)
@@ -42,7 +42,7 @@ object normal {
 	method pescadoMaximoALevantar(unVikingo) = 0.5 * unVikingo.peso() + unVikingo.barbarosidad() * 2
 	method danio(unVikingo) = unVikingo.barbarosidad() + unVikingo.item().poder()
 	method velocidad(unVikingo) = unVikingo.velocidad()
-	method aumentarHambre(unVikingo, unaCantidad) {unVikingo.nivelDeHambre(unVikingo.nivelDeHambre() + unaCantidad)}
+	method aumentoDeHambre(unaCantidad) = unaCantidad
 }
 
 object hipo inherits Vikingo(peso = 50, inteligencia = 10, velocidad = 5, barbarosidad = 6, nivelDeHambre = 0, item = sistemaDeVuelo){}
@@ -53,8 +53,9 @@ object patan inherits Vikingo(peso = 60, inteligencia = 3, velocidad = 9, barbar
 
 object patapez inherits Vikingo(peso = 80, inteligencia = 10, velocidad = 2, barbarosidad = 7, nivelDeHambre = 0, item = comestible){
 	override method estaHambriento() = nivelDeHambre >= 50
-	override method participarEnPosta(unaPosta) {
-		nivelDeHambre += unaPosta.consumoDeHambre() * 2
+	override method aumentarHambre(unaCantidad) {
+		super(unaCantidad)
+		super(unaCantidad)
 	}
 	override method accionarDespuesDeUnaPosta() { self.reducirHambre(comestible.hambreARecuperar()) }
 }

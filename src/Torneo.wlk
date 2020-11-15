@@ -41,5 +41,5 @@ object torneo {
 		self.ocurrirUna(pesca, rankingPesca)
 		self.ocurrirUna(combate, rankingCombate)
 		self.ocurrirUna(carrera, rankingCarrera)
-	}	
+	}
 }
